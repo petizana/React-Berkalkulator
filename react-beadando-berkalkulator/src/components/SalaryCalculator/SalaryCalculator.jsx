@@ -22,7 +22,6 @@ export default function SalaryCalculator({ selectedMember, setSelectedMember, me
   if (selectedMember.personal && SZJA + TB > 77300) net += 77300;
   net += selectedMember.family;
 
-
   function deleteSelectedMember() {
     if(members.length===1) setMembers([{ name: '', gross: 0,key: uuidv4(), netSalary: 0 ,under25: false, marriage: false, personal: false, family: 0 }]);
     else setMembers(members.filter(x => x !== selectedMember));

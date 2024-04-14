@@ -37,7 +37,7 @@ export default function HouseholdSalaryCalculator() {
       </header>
       <main>
         <SalaryCalculator selectedMember={selectedMember} setSelectedMember={setSelectedMember} members={members} setMembers={setMembers} />
-        <HouseholdSummary />
+        <HouseholdSummary members={members} />
       </main>
     </>
   );
