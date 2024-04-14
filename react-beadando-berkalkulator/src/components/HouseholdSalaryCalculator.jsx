@@ -6,8 +6,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 
-// 25 alatti bugos
-// külön komponens a házassághoz
 
 export default function HouseholdSalaryCalculator() {
 
