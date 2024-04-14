@@ -1,5 +1,5 @@
 import MarriageDiscount from "./components/MarriageDiscount/MarriageDiscount";
-import FamilyDiscount from "./components/FamilyDiscount";
+import FamilyDiscount from "./components/FamilyDiscount/FamilyDiscount";
 import { useState } from "react";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
