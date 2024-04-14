@@ -6,31 +6,34 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 
-export default function HouseholdSalaryCalculator(){
+// 25 alatti bugos
+// külön komponens a házassághoz
 
-  const initialFamilyMembers = [
-    { name: 'Anna', gross: 50000,key: uuidv4(), netSalary: 0 ,under25: false, marriage: false, personal: false, family: 0 },
-    { name: 'Béla', gross: 60000,key: uuidv4(), netSalary: 0 ,under25: false, marriage: false, personal: false, family: 0 },
-    // További családtagok...
-  ];
+export default function HouseholdSalaryCalculator() {
 
-  const [members,setMembers] = useState(initialFamilyMembers);
-  const [selectedMember,setSelectedMember] = useState(initialFamilyMembers[0]);
+  const [members, setMembers] = useState([{ name: '', gross: 0, key: uuidv4(), netSalary: 0, under25: false, marriage: false, personal: false, family: 0 }]);
+  const [selectedMember, setSelectedMember] = useState(members[0]);
 
 
   useEffect(() => {
     setMembers([...members.map((member) => {
-        if (member.key === selectedMember.key) {
-            return selectedMember;
-        }
-        return member;
+      if (member.key === selectedMember.key) {
+        return selectedMember;
+      }
+      return member;
     })]);
-}, [selectedMember])
+  }, [selectedMember])
+
+  useEffect(() => {
+    if (!members.some(x => x.key === selectedMember.key)) {
+      setSelectedMember(members[0]);
+    }
+  }, [members])
 
   return (
     <>
       <header>
-        <FamilyMemberTabs members={members} setMembers={setMembers} setSelectedMember={setSelectedMember}/>
+        <FamilyMemberTabs members={members} setMembers={setMembers} setSelectedMember={setSelectedMember} />
       </header>
       <main>
         <SalaryCalculator selectedMember={selectedMember} setSelectedMember={setSelectedMember} members={members} setMembers={setMembers} />
