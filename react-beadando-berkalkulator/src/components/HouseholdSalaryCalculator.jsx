@@ -15,7 +15,7 @@ export default function HouseholdSalaryCalculator(){
   ];
 
   const [members,setMembers] = useState(initialFamilyMembers);
-  const [selectedMember,setSelectedMember] = useState({ name: '', gross: 0, key: uuidv4(), netSalary: 0  ,under25: false, marriage: false, personal: false, family: 0});
+  const [selectedMember,setSelectedMember] = useState(initialFamilyMembers[0]);
 
 
   useEffect(() => {
