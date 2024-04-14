@@ -5,9 +5,11 @@ import { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 export default function Discounts({ setSelectedMember, selectedMember }) {
     const [marriageDiv, setMarriageDiv] = useState("");
+    const [familyDiv, setFamilyDiv] = useState("");
 
     useEffect(() => {
         setMarriageDiv("");
+        setFamilyDiv("");
     }, [selectedMember.key])
 
 
@@ -28,6 +30,14 @@ export default function Discounts({ setSelectedMember, selectedMember }) {
         setSelectedMember({ ...selectedMember, personal: event.target.checked });
     }
 
+    function familyChanged(event) {
+        setFamilyDiv(event.target.checked ? <FamilyDiscount setSelectedMember={setSelectedMember} selectedMember={selectedMember} key={uuidv4()}></FamilyDiscount> : "");
+        if (!event.target.checked) {
+            setSelectedMember({ ...selectedMember, family: 0 })
+            setFamilyDiv("");
+        }
+    }
+
 
 
     return (
@@ -44,6 +54,11 @@ export default function Discounts({ setSelectedMember, selectedMember }) {
             <div className="form-check form-switch">
                 <input className="form-check-input" type="checkbox" role="switch" id="personal" onChange={personalChanged} checked={selectedMember.personal ?? ""} />
                 <label className="form-check-label" htmlFor="personal">Személyi adókedvezmény</label>
+            </div>
+            <div className="form-check form-switch">
+                <input className="form-check-input" type="checkbox" role="switch" id="personal" onChange={familyChanged} checked={selectedMember.family !== 0 ? true : ""} />
+                <label className="form-check-label" htmlFor="personal">Családi kedvezmény</label> &nbsp;
+                {familyDiv}
             </div>
         </>
     );

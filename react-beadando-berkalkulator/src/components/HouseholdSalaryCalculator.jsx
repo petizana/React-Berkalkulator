@@ -9,13 +9,13 @@ import { useState } from "react";
 export default function HouseholdSalaryCalculator(){
 
   const initialFamilyMembers = [
-    { name: 'Anna', gross: 50000,key: uuidv4(), netSalary: 0 ,under25: false, marriage: false, personal: false },
-    { name: 'Béla', gross: 60000,key: uuidv4(), netSalary: 0 ,under25: false, marriage: false, personal: false },
+    { name: 'Anna', gross: 50000,key: uuidv4(), netSalary: 0 ,under25: false, marriage: false, personal: false, family: 0 },
+    { name: 'Béla', gross: 60000,key: uuidv4(), netSalary: 0 ,under25: false, marriage: false, personal: false, family: 0 },
     // További családtagok...
   ];
 
   const [members,setMembers] = useState(initialFamilyMembers);
-  const [selectedMember,setSelectedMember] = useState({ name: '', gross: 0, key: uuidv4(), netSalary: 0  ,under25: false, marriage: false, personal: false});
+  const [selectedMember,setSelectedMember] = useState({ name: '', gross: 0, key: uuidv4(), netSalary: 0  ,under25: false, marriage: false, personal: false, family: 0});
 
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import Discounts from "./components/Discounts/Discounts";
 export default function SalaryCalculator({ selectedMember, setSelectedMember, members, setMembers }) {
   let net;
   const SZJA = selectedMember.gross * 0.15;
-  const TB= selectedMember.gross * 0.185;
+  const TB = selectedMember.gross * 0.185;
   if (!selectedMember.under25) net = selectedMember.gross - SZJA - TB; // simán ha nincs 25 év alatti kedvezmény
   else {
     if (selectedMember.gross <= 499952) {
@@ -17,21 +17,22 @@ export default function SalaryCalculator({ selectedMember, setSelectedMember, me
     }
   }
   if (selectedMember.marriage) net += 5000;
-  if (selectedMember.personal && SZJA+TB <= 77300) net+=SZJA+TB;
-  if (selectedMember.personal && SZJA+TB > 77300) net+=77300;
+  if (selectedMember.personal && SZJA + TB <= 77300) net += SZJA + TB;
+  if (selectedMember.personal && SZJA + TB > 77300) net += 77300;
+  net += selectedMember.family;
 
 
 
 
-    return <div>
-      <LabeledInputForName label="Családtag neve" type="text" selectedMember={selectedMember} setSelectedMember={setSelectedMember} members={members} setMembers={setMembers}></LabeledInputForName>
-      <LabeledInputForNet label="Bruttó bér" type="number" selectedMember={selectedMember} setSelectedMember={setSelectedMember} members={members} setMembers={setMembers}></LabeledInputForNet>
-      <RangeInput setSelectedMember={setSelectedMember} selectedMember={selectedMember}></RangeInput> <br />
-      <Buttons setSelectedMember={setSelectedMember} selectedMember={selectedMember}></Buttons> <br />
-      Kedvezmények <br />
-      <Discounts setSelectedMember={setSelectedMember} selectedMember={selectedMember}></Discounts>
-      <br /> Számított nettó bér:
+  return <div>
+    <LabeledInputForName label="Családtag neve" type="text" selectedMember={selectedMember} setSelectedMember={setSelectedMember} members={members} setMembers={setMembers}></LabeledInputForName>
+    <LabeledInputForNet label="Bruttó bér" type="number" selectedMember={selectedMember} setSelectedMember={setSelectedMember} members={members} setMembers={setMembers}></LabeledInputForNet>
+    <RangeInput setSelectedMember={setSelectedMember} selectedMember={selectedMember}></RangeInput> <br />
+    <Buttons setSelectedMember={setSelectedMember} selectedMember={selectedMember}></Buttons> <br />
+    Kedvezmények <br />
+    <Discounts setSelectedMember={setSelectedMember} selectedMember={selectedMember}></Discounts>
+    <br /> Számított nettó bér:
 
-      <br /><button type="button" className="btn btn-secondary">{net}</button>
-    </div>;
+    <br /><button type="button" className="btn btn-secondary">{net}</button>
+  </div>;
 };
