@@ -1,9 +1,22 @@
 import { useState } from "react";
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    Button,
+    useDisclosure
+} from '@chakra-ui/react'
+import Eligibility from "./components/Eligibility";
 
-export default function MarriageDiscount({setSelectedMember, selectedMember}) {
-    const [dateInput, setDateInput] = useState("");
-    const [eligible, setEligible] = useState("");
-    // mai dátum kivarázslása
+export default function MarriageDiscount({ setSelectedMember, selectedMember }) {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const [eligible, setEligible] = useState(false);
+    // Mai dátum kivarázslása
     const date = new Date();
     let currentDay = date.getDate();
     let currentMonth = date.getMonth() + 1;
@@ -12,10 +25,6 @@ export default function MarriageDiscount({setSelectedMember, selectedMember}) {
     currentDay = currentDay < 10 ? `0${currentDay}` : currentDay;
     currentMonth = currentMonth < 10 ? `0${currentMonth}` : currentMonth;
     const fullDate = `${currentYear}-${currentMonth}-${currentDay}`;
-    function add() {
-        setDateInput(<><label htmlFor="start">Add meg a házasságkötés dátumát</label>
-            <input type="date" id="marriage" name="marriage" onChange={checkEligibility} max={fullDate} /></>);
-    }
 
     function checkEligibility(event) {
         const [marriageYear, marriageMonth, marriageDay] = event.target.value.split("-");
@@ -23,17 +32,47 @@ export default function MarriageDiscount({setSelectedMember, selectedMember}) {
             (currentYear - marriageYear === 1) ||
             (currentYear - marriageYear === 2 && currentMonth - marriageMonth <= 0 && currentDay - marriageDay <= 0)
         ) {
-            setEligible(<><button type="button" className="btn btn-success">Jogosult</button></>);
+            setEligible(true);
             setSelectedMember({ ...selectedMember, marriage: true });
         }
-        else 
-        {
-            setEligible(<><button type="button" className="btn btn-danger">Nem jogosult</button></>);
+        else {
+            setEligible(false);
             setSelectedMember({ ...selectedMember, marriage: false });
         }
 
 
     }
+
+    return (
+        <>
+            <Button onClick={onOpen}>Dátum hozzáadása</Button>
+
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Dátum megadása</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        A kedvezmény először a házasságkötést követő hónapra vehető igénybe és a házassági életközösség alatt legfeljebb 24 hónapon keresztül jár. <br />
+                        <label htmlFor="start">Add meg a házasságkötés dátumát</label>
+                        <br />
+                        <input type="date" id="marriage" name="marriage" onChange={checkEligibility} max={fullDate} />
+                        <br /><font size="1">Például: 2000-10-25</font>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme='blue' mr={3} onClick={onClose}>
+                            Mentés
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+            <Eligibility eligible={eligible}></Eligibility>
+        </>
+    )
+
+
+
     return (
         <>
             <button type="button" className="btn btn-secondary" onClick={add}>Dátum hozzáadása</button>

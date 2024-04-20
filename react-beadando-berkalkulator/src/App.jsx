@@ -1,9 +1,10 @@
 import HouseholdSalaryCalculator from "./components/HouseholdSalaryCalculator";
+import { ChakraProvider } from '@chakra-ui/react'
 function App() {
   return (
-    <div>
+    <ChakraProvider>
       <HouseholdSalaryCalculator />
-    </div>
+    </ChakraProvider>
   );
 }
 
