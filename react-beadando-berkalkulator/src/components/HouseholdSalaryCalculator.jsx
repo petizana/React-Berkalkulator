@@ -39,19 +39,8 @@ export default function HouseholdSalaryCalculator() {
     }
 
     function deleteSelectedMember() {
-      if (members.length === 1) {
-        localStorage.setItem("members", JSON.stringify([{ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 }]));
-        setMembers([{ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 }]);
-        setSelectedMember({ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 });
-      } else {
-        const newMembers = members.filter(x => x !== selectedMember);
-        localStorage.setItem("members", JSON.stringify(newMembers));
-        setMembers(newMembers);
-
-        if (!newMembers.some(x => x.key === selectedMember.key)) {
-          setSelectedMember(newMembers[0]);
-        }
-      }
+      if(members.length===1) setMembers([{ name: '', gross: 0,key: uuidv4() ,under25: false, marriage: false, personal: false, family: 0 }]);
+      else setMembers(members.filter(x => x.key !== selectedMember.key));
     }
 
 
@@ -67,6 +56,12 @@ export default function HouseholdSalaryCalculator() {
       setMembers(JSON.parse(localStorage.members));
     }
   }, []);
+
+  useEffect(() => {
+    if (!members.some(x => x.key === selectedMember.key)) {
+      updateSelectedMember(members[0]);
+    }
+  }, [members])
 
 
   function countNetSalary(member) {
