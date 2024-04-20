@@ -86,7 +86,7 @@ export default function HouseholdSalaryCalculator() {
   }
 
   return (
-    <>
+    <div>
       <header>
         <FamilyMemberTabs members={members} updateSelectedMember={updateSelectedMember} addNewMember={addNewMember} />
       </header>
@@ -94,7 +94,7 @@ export default function HouseholdSalaryCalculator() {
         <SalaryCalculator selectedMember={selectedMember} updateSelectedMember={updateSelectedMember} members={members} countNetSalary={countNetSalary} deleteSelectedMember={deleteSelectedMember} />
         <HouseholdSummary members={members} countNetSalary={countNetSalary} />
       </main>
-    </>
+    </div>
   );
 };
 

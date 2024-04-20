@@ -1,8 +1,9 @@
+import { Button, ButtonGroup } from '@chakra-ui/react'
 export default function Eligibility({eligible})
 {
     return(
         <>
-        <button type="button" className={eligible ?"btn btn-success" : "btn btn-danger"  }>{eligible ? "Jogosult" : "Nem jogosult"}</button>
+        <Button type="button" colorScheme={eligible ?"green" : "red"  }>{eligible ? "Jogosult" : "Nem jogosult"}</Button>
         </>
     )
 }

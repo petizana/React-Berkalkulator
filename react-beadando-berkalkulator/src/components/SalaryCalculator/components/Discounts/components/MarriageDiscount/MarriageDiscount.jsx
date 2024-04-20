@@ -8,7 +8,8 @@ import {
     ModalBody,
     ModalCloseButton,
     Button,
-    useDisclosure
+    useDisclosure,
+    Input
 } from '@chakra-ui/react'
 import Eligibility from "./components/Eligibility";
 
@@ -54,9 +55,9 @@ export default function MarriageDiscount({ updateSelectedMember, selectedMember 
                     <ModalCloseButton />
                     <ModalBody>
                         A kedvezmény először a házasságkötést követő hónapra vehető igénybe és a házassági életközösség alatt legfeljebb 24 hónapon keresztül jár. <br />
-                        <label htmlFor="start">Add meg a házasságkötés dátumát</label>
+                        <label htmlFor="start"><strong>Add meg a házasságkötés dátumá</strong>t</label>
                         <br />
-                        <input type="date" id="marriage" name="marriage" onChange={checkEligibility} max={fullDate} />
+                        <Input type="date" id="marriage" name="marriage" onChange={checkEligibility} max={fullDate} />
                         <br /><font size="1">Például: 2000-10-25</font>
                     </ModalBody>
 
@@ -70,15 +71,4 @@ export default function MarriageDiscount({ updateSelectedMember, selectedMember 
             <Eligibility eligible={eligible}></Eligibility>
         </>
     )
-
-
-
-    return (
-        <>
-            <button type="button" className="btn btn-secondary" onClick={add}>Dátum hozzáadása</button>
-            {dateInput}
-            {eligible}
-
-        </>
-    );
 }

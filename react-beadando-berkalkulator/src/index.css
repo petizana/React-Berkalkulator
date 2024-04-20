@@ -85,3 +85,15 @@ h6 {
 #__next {
     isolation: isolate;
 }
+
+#calc {
+    margin-right: 250px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* A viewport magasságának 100%-a */
+}

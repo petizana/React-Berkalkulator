@@ -3,6 +3,7 @@ import FamilyDiscount from "./components/FamilyDiscount/FamilyDiscount";
 import { useState } from "react";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { Switch } from '@chakra-ui/react'
 export default function Discounts({ updateSelectedMember, selectedMember }) {
     const [marriageDiv, setMarriageDiv] = useState("");
     const [familyDiv, setFamilyDiv] = useState("");
@@ -42,24 +43,21 @@ export default function Discounts({ updateSelectedMember, selectedMember }) {
 
     return (
         <>
-            <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" role="switch" id="under25" onChange={under25Changed} checked={selectedMember.under25 ?? ""} />
+            
+                <Switch size="lg" id="under25" onChange={under25Changed} isChecked={selectedMember.under25 ?? ""} /> &nbsp;
                 <label className="form-check-label" htmlFor="under25">25 év alattiak SZJA mentessége</label>
-            </div>
-            <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" role="switch" id="marriage" onChange={marriageChanged} checked={selectedMember.marriage ?? ""} />
+            <br />
+                <Switch size="lg" id="marriage" onChange={marriageChanged} isChecked={selectedMember.marriage ?? ""} /> &nbsp;
                 <label className="form-check-label" htmlFor="marriage">Friss házasok kedvezménye</label> &nbsp;
                 {marriageDiv}
-            </div>
-            <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" role="switch" id="personal" onChange={personalChanged} checked={selectedMember.personal ?? ""} />
+            <br />
+                <Switch size="lg" id="personal" onChange={personalChanged} isChecked={selectedMember.personal ?? ""} /> &nbsp;
                 <label className="form-check-label" htmlFor="personal">Személyi adókedvezmény</label>
-            </div>
-            <div className="form-check form-switch">
-                <input className="form-check-input" type="checkbox" role="switch" id="personal" onChange={familyChanged} checked={selectedMember.family !== 0 ? true : ""} />
+            <br />
+                <Switch size="lg" id="personal" onChange={familyChanged} isChecked={selectedMember.family !== 0 ? true : ""} /> &nbsp;
                 <label className="form-check-label" htmlFor="personal">Családi kedvezmény</label> &nbsp;
                 {familyDiv}
-            </div>
+            
         </>
     );
 }
