@@ -1,8 +1,8 @@
-export default function Buttons({setSelectedMember, selectedMember})
+export default function Buttons({updateSelectedMember, selectedMember})
 {
     function changeByPercent(amount)
     {
-        setSelectedMember({...selectedMember,gross: Number(selectedMember.gross) + Number(selectedMember.gross*amount/100)});
+        updateSelectedMember({...selectedMember,gross: Number(selectedMember.gross) + Number(selectedMember.gross*amount/100)});
     }
     return(
         <>

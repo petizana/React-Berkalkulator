@@ -1,10 +1,10 @@
 
-export default function LabeledInputForName({ label, type, selectedMember, setSelectedMember, members, setMembers }) {
+export default function LabeledInputForName({ label, type, selectedMember, updateSelectedMember}) {
 
    
 
     function nameChanged(event) {
-        setSelectedMember({...selectedMember,name: event.target.value});
+        updateSelectedMember({...selectedMember,name: event.target.value});
 
     }
 

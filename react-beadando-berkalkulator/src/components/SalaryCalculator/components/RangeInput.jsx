@@ -1,6 +1,6 @@
-export default function RangeInput({ setSelectedMember, selectedMember }) {
+export default function RangeInput({ updateSelectedMember, selectedMember }) {
     function changeGross(event) {
-        setSelectedMember({ ...selectedMember, gross: event.target.value })
+        updateSelectedMember({ ...selectedMember, gross: event.target.value })
     }
 
     return (

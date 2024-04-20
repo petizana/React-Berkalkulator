@@ -3,7 +3,7 @@ import FamilyDiscount from "./components/FamilyDiscount/FamilyDiscount";
 import { useState } from "react";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
-export default function Discounts({ setSelectedMember, selectedMember }) {
+export default function Discounts({ updateSelectedMember, selectedMember }) {
     const [marriageDiv, setMarriageDiv] = useState("");
     const [familyDiv, setFamilyDiv] = useState("");
 
@@ -15,25 +15,25 @@ export default function Discounts({ setSelectedMember, selectedMember }) {
 
     function under25Changed(event) {
         console.log(event.target.checked);
-        setSelectedMember({ ...selectedMember, under25: event.target.checked });
+        updateSelectedMember({ ...selectedMember, under25: event.target.checked });
     }
 
     function marriageChanged(event) {
-        setMarriageDiv(event.target.checked ? <MarriageDiscount setSelectedMember={setSelectedMember} selectedMember={selectedMember} key={uuidv4()}></MarriageDiscount> : "");
+        setMarriageDiv(event.target.checked ? <MarriageDiscount updateSelectedMember={updateSelectedMember} selectedMember={selectedMember} key={uuidv4()}></MarriageDiscount> : "");
         if (!event.target.checked) {
-            setSelectedMember({ ...selectedMember, marriage: false })
+            updateSelectedMember({ ...selectedMember, marriage: false })
             setMarriageDiv("");
         }
     }
 
     function personalChanged(event) {
-        setSelectedMember({ ...selectedMember, personal: event.target.checked });
+        updateSelectedMember({ ...selectedMember, personal: event.target.checked });
     }
 
     function familyChanged(event) {
-        setFamilyDiv(event.target.checked ? <FamilyDiscount setSelectedMember={setSelectedMember} selectedMember={selectedMember} key={uuidv4()}></FamilyDiscount> : "");
+        setFamilyDiv(event.target.checked ? <FamilyDiscount updateSelectedMember={updateSelectedMember} selectedMember={selectedMember} key={uuidv4()}></FamilyDiscount> : "");
         if (!event.target.checked) {
-            setSelectedMember({ ...selectedMember, family: 0 })
+            updateSelectedMember({ ...selectedMember, family: 0 })
             setFamilyDiv("");
         }
     }

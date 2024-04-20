@@ -9,27 +9,67 @@ import { useState } from "react";
 
 export default function HouseholdSalaryCalculator() {
 
-  const [members, setMembers] = useState([{ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 }]);
-  const [selectedMember, setSelectedMember] = useState(members[0]);
 
+  function useMembers(initVal) {
+    const [members, setMembers] = useState([{ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 }]);
+    const [selectedMember, setSelectedMember] = useState(members[0]);
 
-  useEffect(() => {
-    setMembers([...members.map((member) => {
-      if (member.key === selectedMember.key) {
-        return selectedMember;
-      }
-      return member;
-    })]);
-  }, [selectedMember])
+    function updateSelectedMember(selectedMember) {
+      setSelectedMember(selectedMember);
+      setMembers(prevMembers => {
+        const updatedMembers = prevMembers.map((member) => {
+          if (member.key === selectedMember.key) {
+            return selectedMember;
+          }
+          return member;
+        });
 
-  useEffect(() => {
-    if (!members.some(x => x.key === selectedMember.key)) {
-      setSelectedMember(members[0]);
+        localStorage.setItem("members", JSON.stringify(updatedMembers));
+
+        return updatedMembers;
+      });
     }
-  }, [members])
 
-  function countNetSalary(member)
-  {
+
+    function addNewMember() {
+      const newMember = { name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 };
+      localStorage.setItem("members", JSON.stringify([...members, newMember]));
+      setMembers([...members, newMember]);
+      setSelectedMember(newMember);
+    }
+
+    function deleteSelectedMember() {
+      if (members.length === 1) {
+        localStorage.setItem("members", JSON.stringify([{ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 }]));
+        setMembers([{ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 }]);
+        setSelectedMember({ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 });
+      } else {
+        const newMembers = members.filter(x => x !== selectedMember);
+        localStorage.setItem("members", JSON.stringify(newMembers));
+        setMembers(newMembers);
+
+        if (!newMembers.some(x => x.key === selectedMember.key)) {
+          setSelectedMember(newMembers[0]);
+        }
+      }
+    }
+
+
+
+    return { members, selectedMember, updateSelectedMember, addNewMember, deleteSelectedMember, setMembers }
+  }
+
+  const { members, selectedMember, updateSelectedMember, addNewMember, deleteSelectedMember, setMembers } = useMembers("");
+
+  useEffect(() => {
+    if (localStorage.members) {
+      updateSelectedMember(JSON.parse(localStorage.members)[0]);
+      setMembers(JSON.parse(localStorage.members));
+    }
+  }, []);
+
+
+  function countNetSalary(member) {
     let net;
     const SZJA = member.gross * 0.15;
     const TB = member.gross * 0.185;
@@ -53,10 +93,10 @@ export default function HouseholdSalaryCalculator() {
   return (
     <>
       <header>
-        <FamilyMemberTabs members={members} setMembers={setMembers} setSelectedMember={setSelectedMember} />
+        <FamilyMemberTabs members={members} updateSelectedMember={updateSelectedMember} addNewMember={addNewMember} />
       </header>
       <main>
-        <SalaryCalculator selectedMember={selectedMember} setSelectedMember={setSelectedMember} members={members} setMembers={setMembers} countNetSalary={countNetSalary} />
+        <SalaryCalculator selectedMember={selectedMember} updateSelectedMember={updateSelectedMember} members={members} countNetSalary={countNetSalary} deleteSelectedMember={deleteSelectedMember} />
         <HouseholdSummary members={members} countNetSalary={countNetSalary} />
       </main>
     </>

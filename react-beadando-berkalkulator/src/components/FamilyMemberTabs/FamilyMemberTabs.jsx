@@ -1,16 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
-export default function FamilyMemberTabs({ members, setMembers, setSelectedMember }) {
+export default function FamilyMemberTabs({ members, updateSelectedMember, addNewMember }) {
   const handleMemberClick = (member) => {
-    setSelectedMember(member);
+    updateSelectedMember(member);
   };
 
 
-  // Családtag hozzáadása
-  const addNewMember = () => {
-    const newMember = { name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0};
-    setMembers([...members, newMember]);
-    setSelectedMember(newMember);
-  };
+
 
 
   return (

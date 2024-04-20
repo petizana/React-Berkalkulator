@@ -1,7 +1,7 @@
-export default function LabeledInputForNet({ label,type,selectedMember, setSelectedMember }) {
+export default function LabeledInputForNet({ label,type,selectedMember, updateSelectedMember }) {
 
     function netChanged(event) {
-        setSelectedMember({...selectedMember, gross: event.target.value});
+        updateSelectedMember({...selectedMember, gross: event.target.value});
     }
 
     return (

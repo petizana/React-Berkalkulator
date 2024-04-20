@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PlusMinusButtons from "./components/PlusMinusButtons";
 
-export default function FamilyDiscount({ setSelectedMember, selectedMember }) {
+export default function FamilyDiscount({ updateSelectedMember, selectedMember }) {
     const [dependent, setDependent] = useState(0);
     const [beneficiary, setBeneficiary] = useState(0);
 
@@ -28,7 +28,7 @@ export default function FamilyDiscount({ setSelectedMember, selectedMember }) {
                 famDiscount = 33000 * dependent;
                 break;
         }
-        setSelectedMember({ ...selectedMember, family: famDiscount });
+        updateSelectedMember({ ...selectedMember, family: famDiscount });
     }, [dependent, beneficiary])
 
     return (

@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import Eligibility from "./components/Eligibility";
 
-export default function MarriageDiscount({ setSelectedMember, selectedMember }) {
+export default function MarriageDiscount({ updateSelectedMember, selectedMember }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [eligible, setEligible] = useState(false);
@@ -33,11 +33,11 @@ export default function MarriageDiscount({ setSelectedMember, selectedMember }) 
             (currentYear - marriageYear === 2 && currentMonth - marriageMonth <= 0 && currentDay - marriageDay <= 0)
         ) {
             setEligible(true);
-            setSelectedMember({ ...selectedMember, marriage: true });
+            updateSelectedMember({ ...selectedMember, marriage: true });
         }
         else {
             setEligible(false);
-            setSelectedMember({ ...selectedMember, marriage: false });
+            updateSelectedMember({ ...selectedMember, marriage: false });
         }
 
 
