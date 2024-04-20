@@ -1,4 +1,4 @@
-export default function HouseholdSummary({ members }) {
+export default function HouseholdSummary({ members, countNetSalary }) {
 
   return (
     <>
@@ -12,7 +12,7 @@ export default function HouseholdSummary({ members }) {
         </thead>
 
         <tbody>
-          {...members.map((member) => <tr><td>{member.name}</td><td>{member.net} Ft</td></tr>)}
+          {...members.map((member) => <tr><td>{member.name}</td><td>{countNetSalary(member)} Ft</td></tr>)}
         </tbody>
       </table>
 
