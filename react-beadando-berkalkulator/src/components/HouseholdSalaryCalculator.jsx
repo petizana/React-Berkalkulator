@@ -39,7 +39,7 @@ export default function HouseholdSalaryCalculator() {
         net = member.gross - TB; // ha van kedvezmény és az a limit alatti
       }
       else {
-        net = (member.gross - TB) - (member.gross - 499952 * 0.15); // ha van kedvezmény és limit feletti
+        net = (member.gross - TB) - ((member.gross - 499952) * 0.15); // ha van kedvezmény és limit feletti
       }
     }
     if (member.marriage) net += 5000;

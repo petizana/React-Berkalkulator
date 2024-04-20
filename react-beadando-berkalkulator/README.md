@@ -25,7 +25,7 @@ A fegyelmi vétség legsúlyosabb következménye a hallgató elbocsátása az e
 Kérlek, beadás előtt töltsétek ki, hogy mely részfeladatokat oldottátok meg!
 
 
--[] Az alkalmazás legalább 4 komponensből áll. (Enélkül a beadandót nem fogadjuk el.) (1pt)
+-[x] Az alkalmazás legalább 4 komponensből áll. (Enélkül a beadandót nem fogadjuk el.) (1pt)
 Tehát léteznek a következő komponensek:  
   [x] Szöveges beviteli mező címkével
   [x] Egyedi beviteli komponens, mellyel az kedvezményezett eltartottak és a nem kedvezményezett eltartottak számát tudjuk megadni
