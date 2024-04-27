@@ -81,7 +81,7 @@ export default function HouseholdSalaryCalculator() {
     if (member.personal && SZJA + TB <= 77300) net += SZJA + TB;
     if (member.personal && SZJA + TB > 77300) net += 77300;
     net += member.family;
-
+    if(net>member.gross) return Number(member.gross);
     return net;
   }
 
