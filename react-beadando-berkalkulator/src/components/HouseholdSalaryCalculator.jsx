@@ -11,7 +11,7 @@ export default function HouseholdSalaryCalculator() {
 
 
   function useMembers(initVal) {
-    const [members, setMembers] = useState([{ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 }]);
+    const [members, setMembers] = useState([{ name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 , beneficiary: 0, dependent: 0}]);
     const [selectedMember, setSelectedMember] = useState(members[0]);
 
     function updateSelectedMember(selectedMember) {
@@ -32,14 +32,14 @@ export default function HouseholdSalaryCalculator() {
 
 
     function addNewMember() {
-      const newMember = { name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0 };
+      const newMember = { name: '', gross: 0, key: uuidv4(), under25: false, marriage: false, personal: false, family: 0, beneficiary: 0, dependent: 0 };
       localStorage.setItem("members", JSON.stringify([...members, newMember]));
       setMembers([...members, newMember]);
       setSelectedMember(newMember);
     }
 
     function deleteSelectedMember() {
-      if(members.length===1) setMembers([{ name: '', gross: 0,key: uuidv4() ,under25: false, marriage: false, personal: false, family: 0 }]);
+      if(members.length===1) setMembers([{ name: '', gross: 0,key: uuidv4() ,under25: false, marriage: false, personal: false, family: 0 , beneficiary: 0, dependent: 0 }]);
       else setMembers(members.filter(x => x.key !== selectedMember.key));
     }
 

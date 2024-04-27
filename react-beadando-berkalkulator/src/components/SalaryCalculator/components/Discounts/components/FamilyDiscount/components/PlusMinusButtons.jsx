@@ -1,6 +1,6 @@
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 
-export default function PlusMinusButtons({ value,onClickForMinus, onClickForPlus }) {
+export default function PlusMinusButtons({ value, onClickForMinus, onClickForPlus }) {
     return (
         <>
             <Button size="xs" variant="outline" colorScheme="blue" onClick={onClickForMinus}>

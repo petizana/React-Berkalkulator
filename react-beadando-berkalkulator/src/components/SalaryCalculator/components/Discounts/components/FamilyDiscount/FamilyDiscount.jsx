@@ -1,42 +1,61 @@
 import { useState, useEffect } from "react";
 import PlusMinusButtons from "./components/PlusMinusButtons";
 
-export default function FamilyDiscount({ updateSelectedMember, selectedMember }) {
-    const [dependent, setDependent] = useState(0);
-    const [beneficiary, setBeneficiary] = useState(0);
+export default function FamilyDiscount({ style, updateSelectedMember, selectedMember }) {
 
-    useEffect(() => {
-        if (beneficiary > dependent) setBeneficiary(dependent);
-    }, [dependent])
 
     useEffect(() => {
         let famDiscount = 0;
-        switch (beneficiary) {
+        switch (selectedMember.beneficiary) {
             case 0:
-                famDiscount = 0;
+                famDiscount=0;
                 break;
             case 1:
-                famDiscount = 10000 * dependent;
+                famDiscount = 10000 * selectedMember.dependent;
                 break;
             case 2:
-                famDiscount = 20000 * dependent;
+                famDiscount = 20000 * selectedMember.dependent;
                 break;
             case 3:
-                famDiscount = 33000 * dependent;
+                famDiscount = 33000 * selectedMember.dependent;
                 break;
             default:
-                famDiscount = 33000 * dependent;
+                famDiscount = 33000 * selectedMember.dependent;
                 break;
         }
         updateSelectedMember({ ...selectedMember, family: famDiscount });
-    }, [dependent, beneficiary])
+    }, [selectedMember.dependent, selectedMember.beneficiary])
+
+    function minusForDependent() {
+        if (selectedMember.dependent - 1 >= 0) {
+            if (selectedMember.beneficiary > selectedMember.dependent-1) updateSelectedMember({...selectedMember, beneficiary: selectedMember.dependent-1, dependent: selectedMember.dependent - 1 });
+            else updateSelectedMember({ ...selectedMember, dependent: selectedMember.dependent - 1 });
+        }
+
+    }
+
+    function plusForDependent() {
+        updateSelectedMember({ ...selectedMember, dependent: selectedMember.dependent + 1 });
+    }
+
+    function minusForBeneficiary() {
+        if (selectedMember.beneficiary - 1 >= 0) {
+            updateSelectedMember({ ...selectedMember, beneficiary: selectedMember.beneficiary - 1 })
+        }
+    }
+
+    function plusForBeneficiary() {
+        if (selectedMember.beneficiary + 1 <= 3 && selectedMember.beneficiary + 1 <= selectedMember.dependent) {
+            updateSelectedMember({ ...selectedMember, beneficiary: selectedMember.beneficiary + 1 })
+        }
+    }
 
     return (
-        <>
-            <PlusMinusButtons value={dependent} onClickForMinus={() => { if (dependent - 1 >= 0) setDependent(dependent - 1) }} onClickForPlus={() => setDependent(dependent + 1)}></PlusMinusButtons>
+        <div style={style}>
+            <PlusMinusButtons value={selectedMember.dependent} onClickForMinus={minusForDependent} onClickForPlus={plusForDependent}></PlusMinusButtons>
             <strong>Eltartott, ebből kedvezményezett</strong>
-            <PlusMinusButtons value={beneficiary} onClickForMinus={() => { if (beneficiary - 1 >= 0) setBeneficiary(beneficiary - 1) }} onClickForPlus={() => { if (beneficiary + 1 <= 3 && beneficiary + 1 <= dependent) setBeneficiary(beneficiary + 1) }}></PlusMinusButtons>
+            <PlusMinusButtons value={selectedMember.beneficiary} onClickForMinus={minusForBeneficiary} onClickForPlus={plusForBeneficiary}></PlusMinusButtons>
 
-        </>
+        </div>
     );
 }
