@@ -6,26 +6,20 @@ import {
     NumberIncrementStepper,
     NumberDecrementStepper,
 } from '@chakra-ui/react'
-export default function LabeledInput({ label, selectedMember, updateSelectedMember }) {
+export default function Gross({ label, selectedMember, updateSelectedMember}) {
 
-
+   
 
     function grossChanged(event) {
-        updateSelectedMember({ ...selectedMember, gross: event });
+        updateSelectedMember({...selectedMember,gross: event.target.value});
 
     }
 
     return (
         <div className="form-group">
-            <label htmlFor="input">{label}</label>
-            <NumberInput id="input" aria-describedby="input_help" placeholder={label} onChange={grossChanged} value={selectedMember.gross ?? ""} min={0} max={10000000}>
-                <NumberInputField />
-                <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                </NumberInputStepper>
-            </NumberInput>
-            <small id="input_help" className="form-text text-muted">Add meg a {label}t! </small>
+            <label htmlFor="grossInput">{label}</label>
+            <Input id="grossInput" aria-describedby="input_help" placeholder={label} onChange={grossChanged} value={selectedMember.gross ?? ""} />
+            <small id="helpgrossInput" className="form-text text-muted">Add meg a {label}t! </small>
         </div>
 
     );
