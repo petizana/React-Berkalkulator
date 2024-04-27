@@ -13,9 +13,12 @@ export default function SalaryCalculator({ selectedMember, updateSelectedMember,
 
   return (
     <>
+    
     <div id="calc" style={{textAlign: 'right'}}>
+      
       <Button colorScheme="blue" onClick={deleteSelectedMember}><DeleteIcon /></Button>
       <div style={{textAlign: 'left'}}>
+        <strong>{selectedMember.name} bérének kiszámítása</strong>
         <Name label="Családtag neve" selectedMember={selectedMember} updateSelectedMember={updateSelectedMember} members={members}></Name>
         <Gross label="Bruttó bér" selectedMember={selectedMember} updateSelectedMember={updateSelectedMember} members={members}></Gross>
         <RangeInput updateSelectedMember={updateSelectedMember} selectedMember={selectedMember}></RangeInput> <br /> <br />
