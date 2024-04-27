@@ -54,8 +54,8 @@ export default function Discounts({ updateSelectedMember, selectedMember }) {
                 <Switch size="lg" id="personal" onChange={personalChanged} isChecked={selectedMember.personal ?? ""} /> &nbsp;
                 <label className="form-check-label" htmlFor="personal">Személyi adókedvezmény</label>
             <br />
-                <Switch size="lg" id="personal" onChange={familyChanged} isChecked={selectedMember.family !== 0 ? true : ""} /> &nbsp;
-                <label className="form-check-label" htmlFor="personal">Családi kedvezmény</label> &nbsp;
+                <Switch size="lg" id="family" onChange={familyChanged} isChecked={selectedMember.family !== 0 ? true : ""} /> &nbsp;
+                <label className="form-check-label" htmlFor="family">Családi kedvezmény</label> &nbsp;
                 {familyDiv}
             
         </>
