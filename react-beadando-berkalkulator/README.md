@@ -27,10 +27,10 @@ Kérlek, beadás előtt töltsétek ki, hogy mely részfeladatokat oldottátok m
 
 -[x] Az alkalmazás legalább 4 komponensből áll. (Enélkül a beadandót nem fogadjuk el.) (1pt)
 Tehát léteznek a következő komponensek:  
-  [x] Szöveges beviteli mező címkével
-  [x] Egyedi beviteli komponens, mellyel az kedvezményezett eltartottak és a nem kedvezményezett eltartottak számát tudjuk megadni
-  [x] Friss házasokra megadására vonatkozó komponens.
-  [x] Jogosultság/Nem jogosultság megjelenítésére vonatkozó komponens
+  [x] Szöveges beviteli mező címkével [Name.jsx]
+  [x] Egyedi beviteli komponens, mellyel az kedvezményezett eltartottak és a nem kedvezményezett eltartottak számát tudjuk megadni [PlusMinusButtons.jsx]
+  [x] Friss házasokra megadására vonatkozó komponens. [MarriageDiscount.jsx]
+  [x] Jogosultság/Nem jogosultság megjelenítésére vonatkozó komponens [Eligibility.jsx]
 -[x] Az alkalmazásban a komponenseket logikusan, funkciók szerint szétbontva hozta létre, ügyelve a tárgyon elsajátított alapelvekre. (2pt)
 - Bérkalkulátor
   -[x] Az alkalmazás a bruttó jövedelem megadásakor automatikusan kiszámítja a nettó fizetést, mely az alkalmazás állapotterében tárolódik. Amennyiben megváltozik a bruttó jövedelem, vagy bármilyen azt befolyásoló érték, a nettó jövedelem mindig automatikusan frissüljön.  (2pt)
@@ -38,7 +38,7 @@ Tehát léteznek a következő komponensek:
   -[x] A bruttó bért a megadott gombok segítségével (-5%, -1%, +1%, +5%) is tudjuk módosítani, ilyenkor a nettó bér frissül (2pt)
   -[x] A 25 év alattiak SZJA-mentessége esetén a nettó bér jól változik (1pt)
   -[x] A friss házasok kedvezményének bejelölése lehetséges, bejelölése esetén a nettó bér jól változik (1pt)
-  -[x] A friss házasok kedvezményének bejelölésekor egy új komponens jelenik meg, melynek a lényege, hogy a felhasználó meg tudja adni, hogy melyik napon házasodott össze. Ha ez régebben volt, mint 24 hónap, a "Nem jogosult" szöveg jelenik meg, két éven belül pedig a "Jogosult" szöveg jelenik meg a jelölőnégyzet mellett, és csak ilyenkor számolódik hozzá a nettóhoz. (3pt)
+  -[x] A friss házasok kedvezményének bejelölésekor egy új komponens jelenik meg, melynek a lényege, hogy a felhasználó meg tudja adni, hogy melyik napon házasodott össze. Ha ez régebben volt, mint 24 hónap, a "Nem jogosult" szöveg jelenik meg, két éven belül pedig a "Jogosult" szöveg jelenik meg a jelölőnégyzet mellett, és csak ilyenkor számolódik hozzá a nettóhoz. (3pt) (megj:napra pontosan néztem)
   -[x] Egyedi beviteli komponens: A kedvezményezett és nem kedvezményezett eltartottak számát meg tudjuk adni, és ezek alapján a nettó bér jól változik. Ez a pont akkor is jár, ha ez a mező csak egy sima szöveges beviteli mező. A kedvezményezett eltartottak száma nem lehet több az eltartottak számánál, és nem lehet nagyobb, mint 3. (2pt)
   -[x] Egyedi beviteli komponens: Az egyedi beviteli komponenssel - és + gombok segítségével tudjuk változtatni a hozzá tartozó szám értékét. (2pt)
 - Háztartás jövedelme
