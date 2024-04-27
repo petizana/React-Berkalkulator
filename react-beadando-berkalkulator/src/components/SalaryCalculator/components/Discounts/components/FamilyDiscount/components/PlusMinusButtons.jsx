@@ -1,12 +1,14 @@
+import { Button, ButtonGroup } from '@chakra-ui/react'
+
 export default function PlusMinusButtons({ value,onClickForMinus, onClickForPlus }) {
     return (
         <>
-            <button type="button" className="btn btn-outline-primary btn-sm rounded-circle" onClick={onClickForMinus}>
+            <Button size="xs" variant="outline" colorScheme="blue" onClick={onClickForMinus}>
                 -
-            </button>
+            </Button>
             {value}
-            <button type="button" className="btn btn-outline-primary btn-sm rounded-circle" onClick={onClickForPlus}>
+            <Button size="xs" variant="outline" colorScheme="blue" onClick={onClickForPlus}>
                 +
-            </button>
+            </Button>
         </>)
 }
